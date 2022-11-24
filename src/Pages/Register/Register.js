@@ -1,15 +1,20 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
     const imageHostKey = process.env.REACT_APP_imgbb_key
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const handleSignup = data => {
+    const from = location.state?.from?.pathname || '/';
+
+
+    const handleSignUp = data => {
         const image = data.photo[0]
         const formData = new FormData();
         formData.append('image', image);
@@ -31,11 +36,14 @@ const Register = () => {
                                 photoURL: photo
                             }
                             updateUser(userInfo)
-                                .then(() => { })
+                                .then(() => {
+                                    saveUser(data.name, data.email, data.role)
+                                })
                                 .catch(err => console.log(err));
                         })
                         .catch(error => { console.log(error) });
                 }
+                navigate(from, { replace: true });
             })
 
     }
@@ -44,9 +52,24 @@ const Register = () => {
         sigInWithGoogle()
             .then(result => {
                 const user = result.user;
+                saveUser(user.displayName, user.email, 'buyer')
+                navigate(from, { replace: true });
             })
             .catch(e => console.error(e))
 
+    }
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => { })
     }
 
 
@@ -55,10 +78,17 @@ const Register = () => {
             <div className="hero min-h-screen bg-[url('https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80')]">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold text-center text-white mb-5">Login now!</h1>
+                        <h1 className="text-5xl font-bold text-center text-white mb-5">Register now!</h1>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 px-5">
-                        <form onSubmit={handleSubmit(handleSignup)} className="card-body">
+                        <form onSubmit={handleSubmit(handleSignUp)} className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Your Name</span>
+                                </label>
+                                <input {...register("name")}
+                                    type="text" placeholder="name" className="input input-bordered" />
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Upload your photo</span>
@@ -84,7 +114,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Choose your role:</span>
                                 </label>
-                                <select className="select select-accent w-full max-w-xs">
+                                <select {...register('role')} className="select select-accent w-full max-w-xs">
                                     <option value='buyer'>Buyer</option>
                                     <option value='seller'>Seller</option>
                                 </select>
