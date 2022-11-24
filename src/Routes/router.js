@@ -1,7 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
+import AddProduct from "../Pages/Dashboard/AddProduct";
+import AllBuyers from "../Pages/Dashboard/AllBuyers";
+import AllSellers from "../Pages/Dashboard/AllSellers";
 import MyOrders from "../Pages/Dashboard/MyOrders";
+import MyProducts from "../Pages/Dashboard/MyProducts";
 import CategoryItems from "../Pages/Home/CategoryItems/CategoryItems";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -27,7 +31,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <CategoryItems></CategoryItems>
+                element: <PrivateRoute><CategoryItems></CategoryItems></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             }
         ]
     },
@@ -38,6 +43,22 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+            },
+            {
+                path: '/dashboard/addproduct',
+                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <PrivateRoute><AllBuyers></AllBuyers></PrivateRoute>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <PrivateRoute><AllSellers></AllSellers></PrivateRoute>
             }
         ]
     }

@@ -33,10 +33,12 @@ const Register = () => {
                             console.log(user);
                             toast('User Created Successfully.')
                             const userInfo = {
-                                photoURL: photo
+                                photoURL: photo,
+                                displayName: data.name
                             }
                             updateUser(userInfo)
                                 .then(() => {
+                                    getUserToken(user.email)
                                     saveUser(data.name, data.email, data.role)
                                 })
                                 .catch(err => console.log(err));
@@ -53,6 +55,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email, 'buyer')
+                getUserToken(user.email)
                 navigate(from, { replace: true });
             })
             .catch(e => console.error(e))
@@ -70,6 +73,16 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => { })
+    }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                }
+            })
     }
 
 

@@ -16,6 +16,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                getUserToken(user.email);
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -28,6 +29,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email, 'buyer')
+                getUserToken(user.email);
                 navigate(from, { replace: true });
             })
             .catch(e => console.error(e))
@@ -44,7 +46,19 @@ const Login = () => {
             body: JSON.stringify(user)
         })
             .then(res => res.json())
-            .then(data => { })
+            .then(data => {
+
+            })
+    }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken);
+                }
+            })
     }
 
 
