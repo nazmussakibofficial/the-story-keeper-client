@@ -63,7 +63,14 @@ const Register = () => {
     }
 
     const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+        const isVerified = false;
+        let user = {}
+        if (role === 'seller') {
+            user = { name, email, role, isVerified };
+        }
+        else {
+            user = { name, email, role };
+        }
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

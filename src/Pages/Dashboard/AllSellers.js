@@ -23,6 +23,26 @@ const AllSellers = () => {
         }
     });
 
+    const handleUpdate = user => {
+        const isVerified = !user.isVerified;
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({ isVerified })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Changed Successfully!');
+                    refetch();
+                }
+            })
+
+    }
+
     const handleDelete = (user) => {
         fetch(`http://localhost:5000/users/${user._id}`, {
             method: 'DELETE',
@@ -53,6 +73,7 @@ const AllSellers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Change Seller Status</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -62,7 +83,8 @@ const AllSellers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><td><label onClick={() => setDeletinguser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td></td>
+                                <td><button onClick={() => handleUpdate(user)} className="btn btn-sm btn-primary">{!user.isVerified ? 'Verify' : 'Unverify'}</button></td>
+                                <td><label onClick={() => setDeletinguser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }
                     </tbody>
