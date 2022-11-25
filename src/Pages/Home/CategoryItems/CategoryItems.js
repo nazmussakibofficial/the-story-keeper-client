@@ -6,7 +6,7 @@ import BookingModal from './BookingModal';
 
 const CategoryItems = () => {
     const [item, setItem] = useState({});
-    const selectedCategory = useLoaderData()[0].category;
+    const selectedCategory = useLoaderData()[0]?.category;
     const { data: items, isLoading, refetch } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {

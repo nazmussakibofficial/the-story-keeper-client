@@ -94,7 +94,7 @@ const MyProducts = () => {
                                 </div></td>
                                 <td>{product.name}</td>
                                 <td>{product.category}</td>
-                                <td>{product.resale}</td>
+                                <td>{product.resale} Taka</td>
                                 <td>Status</td>
                                 <td><label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                                 <td><button onClick={() => handleUpdate(product)} className="btn btn-sm btn-primary">{!product.isAd ? 'Advertise' : 'Undo'}</button></td>

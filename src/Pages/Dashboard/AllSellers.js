@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import ConfimrationModal from '../Shared/ConfimrationModal';
 
 const AllSellers = () => {
+    const [deletingUser, setDeletinguser] = useState(null);
     const { data: users, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -19,6 +22,23 @@ const AllSellers = () => {
             }
         }
     });
+
+    const handleDelete = (user) => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success('User deleted successfully')
+                }
+
+            })
+    }
 
     if (isLoading) {
         return <button className="btn loading">loading</button>;
@@ -42,12 +62,22 @@ const AllSellers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>Delete</td>
+                                <td><td><label onClick={() => setDeletinguser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td></td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+            {
+                deletingUser && <ConfimrationModal
+                    title={`Are you sure you want to delete?`}
+                    message={`If you delete ${deletingUser.name}. It cannot be undone.`}
+                    successAction={handleDelete}
+                    successButtonName="Delete"
+                    modalData={deletingUser}
+                >
+                </ConfimrationModal>
+            }
         </div>
     );
 };
