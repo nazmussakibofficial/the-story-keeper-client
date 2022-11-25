@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import ConfimrationModal from '../Shared/ConfimrationModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 const AllSellers = () => {
     const [deletingUser, setDeletinguser] = useState(null);
@@ -81,7 +83,7 @@ const AllSellers = () => {
                         {
                             users.map((user, i) => <tr key={user._id}>
                                 <th>{i + 1}</th>
-                                <td>{user.name}</td>
+                                <td>{user.name} {user.isVerified && <FontAwesomeIcon className='text-blue-500' icon={faCircleCheck} />}</td>
                                 <td>{user.email}</td>
                                 <td><button onClick={() => handleUpdate(user)} className="btn btn-sm btn-primary">{!user.isVerified ? 'Verify' : 'Unverify'}</button></td>
                                 <td><label onClick={() => setDeletinguser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
