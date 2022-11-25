@@ -10,19 +10,19 @@ const Categories = () => {
             id: 1,
             name: 'Text Books',
             image: img1,
-            category: 'text'
+            category: 'Text'
         },
         {
             id: 2,
             name: 'Story Books',
             image: img2,
-            category: 'story'
+            category: 'Story'
         },
         {
             id: 3,
             name: 'Literature Books',
             image: img3,
-            category: 'literature'
+            category: 'Literature'
         }
     ]
     return (

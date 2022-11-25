@@ -95,8 +95,8 @@ const MyProducts = () => {
                                 <td>{product.name}</td>
                                 <td>{product.category}</td>
                                 <td>{product.resale} Taka</td>
-                                <td>Status</td>
-                                <td><button onClick={() => handleUpdate(product)} className="btn btn-sm btn-secondary">{!product.isAd ? 'Advertise' : 'Undo'}</button></td>
+                                <td>{product.resale && product.paid ? <span className='btn btn-sm btn-primary hover:bg-primary'>Sold</span> : <span className='btn btn-sm btn-primary hover:bg-primary'>Available</span>}</td>
+                                <td>{!product.paid ? <button onClick={() => handleUpdate(product)} className="btn btn-sm btn-secondary">{!product.isAd ? 'Advertise' : 'Undo'}</button> : <span className='btn btn-sm btn-primary hover:bg-primary'>Not Available</span>}</td>
                                 <td><label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }

@@ -81,9 +81,9 @@ const AddProduct = () => {
                                     <span className="label-text">Choose Category:</span>
                                 </label>
                                 <select {...register('category')} className="select select-accent w-full max-w-xs">
-                                    <option value='text'>Text Books</option>
-                                    <option value='story'>Story Books</option>
-                                    <option value='literature'>Literature Books</option>
+                                    <option value='Text'>Text Books</option>
+                                    <option value='Story'>Story Books</option>
+                                    <option value='Literature'>Literature Books</option>
                                 </select>
                             </div>
                             <div className="form-control">

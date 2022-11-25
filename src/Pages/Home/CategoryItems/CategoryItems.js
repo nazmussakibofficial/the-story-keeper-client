@@ -30,7 +30,7 @@ const CategoryItems = () => {
     }
     return (
         <div>
-            <h2 className='text-3xl text-center font-bold my-12'>All {id} books</h2>
+            <h2 className='text-3xl text-center font-bold my-12'>All {id} Books</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-10'>
                 {
                     items.map(item => <CategoryItem key={item._id} item={item} setItem={setItem}></CategoryItem>)
