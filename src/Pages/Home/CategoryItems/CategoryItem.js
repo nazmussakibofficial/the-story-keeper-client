@@ -26,7 +26,7 @@ const CategoryItem = ({ item, setItem }) => {
                 <p>Seller: {sellerName} {verified && <FontAwesomeIcon className='text-blue-500' icon={faCircleCheck} />}</p>
                 <p>Posted on: {date}</p>
                 <div className="card-actions justify-center">
-                    <label onClick={() => setItem(item)} htmlFor="booking-modal" className="btn btn-primary mt-5">Book Now</label>
+                    <label onClick={() => setItem(item)} htmlFor="booking-modal" className="btn btn-secondary mt-5">Book Now</label>
                 </div>
             </div>
 

@@ -68,7 +68,7 @@ const AllSellers = () => {
 
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>
                         <tr>
@@ -85,7 +85,7 @@ const AllSellers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name} {user.isVerified && <FontAwesomeIcon className='text-blue-500' icon={faCircleCheck} />}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={() => handleUpdate(user)} className="btn btn-sm btn-primary">{!user.isVerified ? 'Verify' : 'Unverify'}</button></td>
+                                <td><button onClick={() => handleUpdate(user)} className="btn btn-sm btn-secondary">{!user.isVerified ? 'Verify' : 'Unverify'}</button></td>
                                 <td><label onClick={() => setDeletinguser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }

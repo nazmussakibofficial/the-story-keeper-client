@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import CategoryCard from './CategoryCard';
 
 const AdvertisedProducts = () => {
-    const { data: items, isLoading, refetch } = useQuery({
+    const { data: items, isLoading } = useQuery({
         queryKey: ['items'],
         queryFn: async () => {
             try {

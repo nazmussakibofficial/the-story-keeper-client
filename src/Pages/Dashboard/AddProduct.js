@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const AddProduct = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const AddProduct = () => {
     }
     return (
         <div>
-            <div className="hero min-h-screen bg-[url('https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80')]">
+            <div className="hero mt-10 min-h-screen bg-contain bg-[url('https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80')]">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-center text-white mb-5">Add A Product</h1>
@@ -125,7 +125,7 @@ const AddProduct = () => {
                                 </select>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" value='Submit & Add' type='submit'></input>
+                                <input className="btn btn-secondary" value='Submit & Add' type='submit'></input>
                             </div>
                         </form>
                     </div>

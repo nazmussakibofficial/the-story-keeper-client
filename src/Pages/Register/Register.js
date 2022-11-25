@@ -89,10 +89,10 @@ const Register = () => {
 
     return (
         <div>
-            <div className="hero min-h-screen bg-[url('https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80')]">
+            <div className="hero min-h-screen">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold text-center text-white mb-5">Register now!</h1>
+                        <h1 className="text-5xl font-bold text-center mb-5">Register now!</h1>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 px-5">
                         <form onSubmit={handleSubmit(handleSignUp)} className="card-body">
@@ -134,7 +134,7 @@ const Register = () => {
                                 </select>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" value='Register' type='submit'></input>
+                                <input className="btn btn-secondary" value='Register' type='submit'></input>
                             </div>
                         </form>
                         <p className='mx-auto'>Already Registered? <Link className='link link-accent' to='/register'>Register</Link></p>

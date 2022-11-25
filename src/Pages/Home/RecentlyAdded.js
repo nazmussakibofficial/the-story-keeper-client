@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import CategoryCard from './CategoryCard';
 
 const RecentlyAdded = () => {
-    const { data: recentItems, isLoading, refetch } = useQuery({
+    const { data: recentItems, isLoading } = useQuery({
         queryKey: ['recentItems'],
         queryFn: async () => {
             try {

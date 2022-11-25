@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Banner.css'
 import img1 from '../../Images/banner-1.jpg';
 import img2 from '../../Images/banner-2.jpg';
@@ -7,17 +6,17 @@ import img3 from '../../Images/banner-3.jpg';
 
 const Banner = () => {
     return (
-        <div>
+        <div className='mt-12'>
             <div className="container carousel w-full">
                 <div id="slide1" className="carousel-item relative w-full">
                     <div className='carousel-item-img'>
                         <img src={img1} className="w-full" alt='' />
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
-                        <h1 className='text-5xl text-primary font-bold'>Every book has its <br /> own story to tell</h1>
+                        <h1 className='text-5xl text-secondary font-bold hidden lg:block'>Every book has its <br /> own story to tell</h1>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/2">
-                        <Link to='#categories'><button className="btn btn-secondary">Get Started</button></Link>
+                        <a href='#categories'><button className="btn btn-secondary hidden lg:block">Get Started</button></a>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 bottom-0">
                         <a href="#slide3" className="btn btn-circle btn-secondary mr-5">❮</a>
@@ -29,10 +28,10 @@ const Banner = () => {
                         <img src={img2} className="w-full" alt='' />
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
-                        <h1 className='text-5xl text-primary font-bold'>Instead of throwing <br /> them away</h1>
+                        <h1 className='text-5xl text-secondary font-bold hidden lg:block'>Instead of throwing <br /> them away</h1>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/2">
-                        <Link to='#categories'><button className="btn btn-secondary">Get Started</button></Link>
+                        <a href='#categories'><button className="btn btn-secondary hidden lg:block">Get Started</button></a>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 bottom-0">
                         <a href="#slide1" className="btn btn-circle btn-secondary mr-5">❮</a>
@@ -44,10 +43,10 @@ const Banner = () => {
                         <img src={img3} className="w-full" alt='' />
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
-                        <h1 className='text-5xl text-primary font-bold'>Resell these books to <br /> others in cheap and help <br /> them in education</h1>
+                        <h1 className='text-5xl text-secondary font-bold hidden lg:block'>Resell these books to <br /> others in cheap and help <br /> them in education</h1>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/2">
-                        <Link to='#categories'><button className="btn btn-secondary">Get Started</button></Link>
+                        <a href='#categories'><button className="btn btn-secondary hidden lg:block">Get Started</button></a>
                     </div>
                     <div className="absolute flex justify-end transform -translate-y-1/2 left-24 bottom-0">
                         <a href="#slide2" className="btn btn-circle btn-secondary mr-5">❮</a>

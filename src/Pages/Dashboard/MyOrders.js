@@ -26,7 +26,7 @@ const MyOrders = () => {
 
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>
                         <tr>
@@ -43,14 +43,22 @@ const MyOrders = () => {
                             bookings.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
-                                    <div className="w-24 rounded-full">
+                                    <div className="mask mask-squircle w-12 h-12">
                                         <img src={booking.image} alt="" />
                                     </div>
                                 </div></td>
                                 <td>{booking.productName}</td>
                                 <td>{booking.category}</td>
                                 <td>{booking.price} Taka</td>
-                                <td><Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-primary'>Pay</button></Link></td>
+                                <td>
+                                    {
+                                        booking.price && !booking.paid &&
+                                        <Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-sm btn-secondary'>Pay</button></Link>
+                                    }
+                                    {
+                                        booking.price && booking.paid && <span className='btn btn-primary btn-disabled'>Paid</span>
+                                    }
+                                </td>
                             </tr>)
                         }
                     </tbody>

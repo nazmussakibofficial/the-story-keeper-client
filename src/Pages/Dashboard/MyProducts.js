@@ -37,7 +37,7 @@ const MyProducts = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`Doctor ${product.name} deleted successfully`)
+                    toast.success(`${product.name} deleted successfully`)
                 }
             })
     }
@@ -69,7 +69,7 @@ const MyProducts = () => {
 
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>
                         <tr>
@@ -88,7 +88,7 @@ const MyProducts = () => {
                             products.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
-                                    <div className="w-24 rounded-full">
+                                    <div className="mask mask-squircle w-12 h-12">
                                         <img src={product.image} alt="" />
                                     </div>
                                 </div></td>
@@ -96,8 +96,8 @@ const MyProducts = () => {
                                 <td>{product.category}</td>
                                 <td>{product.resale} Taka</td>
                                 <td>Status</td>
+                                <td><button onClick={() => handleUpdate(product)} className="btn btn-sm btn-secondary">{!product.isAd ? 'Advertise' : 'Undo'}</button></td>
                                 <td><label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
-                                <td><button onClick={() => handleUpdate(product)} className="btn btn-sm btn-primary">{!product.isAd ? 'Advertise' : 'Undo'}</button></td>
                             </tr>)
                         }
                     </tbody>

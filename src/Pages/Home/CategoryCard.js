@@ -13,7 +13,7 @@ const CategoryCard = ({ data, disableButton }) => {
                 {
                     disableButton &&
                     <div className="card-actions">
-                        <Link to={`/category/${category}`}><button className="btn btn-primary">Browse Category</button></Link>
+                        <Link to={`/category/${category}`}><button className="btn btn-secondary">Browse Category</button></Link>
                     </div>}
             </div>
         </div>
