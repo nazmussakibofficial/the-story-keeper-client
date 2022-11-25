@@ -1,23 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const { signIn, sigInWithGoogle } = useContext(AuthContext);
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = data => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                getUserToken(user.email);
-                navigate(from, { replace: true });
+                setUserEmail(data.email);
             })
             .catch(error => {
                 console.log(error.message)
@@ -29,8 +35,6 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email, 'buyer')
-                getUserToken(user.email);
-                navigate(from, { replace: true });
             })
             .catch(e => console.error(e))
 
@@ -47,7 +51,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-
+                setUserEmail(email)
             })
     }
 
@@ -57,6 +61,7 @@ const Login = () => {
             .then(data => {
                 if (data.accessToken) {
                     localStorage.setItem('accessToken', data.accessToken);
+                    navigate(from, { replace: true });
                 }
             })
     }

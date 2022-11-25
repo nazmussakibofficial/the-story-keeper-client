@@ -34,6 +34,7 @@ const AddProduct = () => {
                         condition: data.condition,
                         sellerName: user.displayName,
                         sellerEmail: user.email,
+                        isAd: false
                     }
                     fetch('http://localhost:5000/products', {
                         method: 'POST',

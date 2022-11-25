@@ -1,18 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser, sigInWithGoogle } = useContext(AuthContext);
-    const imageHostKey = process.env.REACT_APP_imgbb_key
-    const location = useLocation();
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
     const navigate = useNavigate();
 
-    const from = location.state?.from?.pathname || '/';
-
+    if (token) {
+        navigate('/');
+    }
 
     const handleSignUp = data => {
         const image = data.photo[0]
@@ -38,14 +41,13 @@ const Register = () => {
                             }
                             updateUser(userInfo)
                                 .then(() => {
-                                    getUserToken(user.email)
                                     saveUser(data.name, data.email, data.role)
                                 })
                                 .catch(err => console.log(err));
                         })
                         .catch(error => { console.log(error) });
                 }
-                navigate(from, { replace: true });
+
             })
 
     }
@@ -55,8 +57,6 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email, 'buyer')
-                getUserToken(user.email)
-                navigate(from, { replace: true });
             })
             .catch(e => console.error(e))
 
@@ -72,18 +72,12 @@ const Register = () => {
             body: JSON.stringify(user)
         })
             .then(res => res.json())
-            .then(data => { })
-    }
-
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
             .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken);
-                }
+                setUserEmail(email);
             })
     }
+
+
 
 
     return (
