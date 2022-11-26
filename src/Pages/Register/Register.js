@@ -71,7 +71,7 @@ const Register = () => {
         else {
             user = { name, email, role };
         }
-        fetch('http://localhost:5000/users', {
+        fetch('https://the-story-keeper-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

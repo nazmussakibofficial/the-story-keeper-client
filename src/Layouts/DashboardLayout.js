@@ -8,7 +8,7 @@ const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
 
 
-    const url = `http://localhost:5000/userData?email=${user?.email}`;
+    const url = `https://the-story-keeper-server.vercel.app/userData?email=${user?.email}`;
 
     const { data: userData = [] } = useQuery({
         queryKey: ['userData', user?.email],

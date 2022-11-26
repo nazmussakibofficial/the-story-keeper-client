@@ -16,7 +16,7 @@ const CategoryItems = () => {
         queryKey: ['items'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/category/${id}`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/category/${id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -40,7 +40,7 @@ const CategoryItems = () => {
             category: item.category,
             image: item.image
         }
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://the-story-keeper-server.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,7 +71,7 @@ const CategoryItems = () => {
             category: item.category,
             image: item.image
         }
-        fetch('http://localhost:5000/reporteditems', {
+        fetch('https://the-story-keeper-server.vercel.app/reporteditems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const MyWIshlist = () => {
 
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/wishlist?email=${user?.email}`
+    const url = `https://the-story-keeper-server.vercel.app/wishlist?email=${user?.email}`
 
     const { data: wishlist = [], isLoading } = useQuery({
         queryKey: ['wishlist', user?.email],

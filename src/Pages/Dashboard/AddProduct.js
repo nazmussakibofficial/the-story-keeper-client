@@ -36,7 +36,7 @@ const AddProduct = () => {
                         sellerEmail: user.email,
                         isAd: false
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://the-story-keeper-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

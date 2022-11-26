@@ -9,7 +9,7 @@ const CategoryItem = ({ item, setItem, handleWishlist, setReportedProduct }) => 
     const { image, name, location, resale, original, usedtime, condition, sellerName, date, sellerEmail } = item;
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/users/sellerVerified/${sellerEmail}`)
+        axios.get(`https://the-story-keeper-server.vercel.app/users/sellerVerified/${sellerEmail}`)
             .then(data => setVerified(data.data.isVerified))
     }, [sellerEmail])
 

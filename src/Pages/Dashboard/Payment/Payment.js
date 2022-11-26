@@ -16,7 +16,7 @@ const Payment = () => {
         queryKey: ['booking'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/${type}/${id}`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/${type}/${id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

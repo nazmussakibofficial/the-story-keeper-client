@@ -11,7 +11,7 @@ const AllSellers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/users?role=seller`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/users?role=seller`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -27,7 +27,7 @@ const AllSellers = () => {
 
     const handleUpdate = user => {
         const isVerified = !user.isVerified;
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://the-story-keeper-server.vercel.app/users/${user._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -46,7 +46,7 @@ const AllSellers = () => {
     }
 
     const handleDelete = (user) => {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://the-story-keeper-server.vercel.app/users/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

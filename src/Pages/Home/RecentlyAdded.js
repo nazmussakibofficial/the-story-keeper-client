@@ -7,7 +7,7 @@ const RecentlyAdded = () => {
         queryKey: ['recentItems'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/recentlyadded`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/recentlyadded`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

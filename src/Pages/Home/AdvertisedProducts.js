@@ -7,7 +7,7 @@ const AdvertisedProducts = () => {
         queryKey: ['items'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/advertisedProducts`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/advertisedProducts`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

@@ -10,7 +10,7 @@ const ReportedItems = () => {
         queryKey: ['reports'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/reporteditems`, {
+                const res = await fetch(`https://the-story-keeper-server.vercel.app/reporteditems`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -25,7 +25,7 @@ const ReportedItems = () => {
     });
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/products/${product.productID}`, {
+        fetch(`https://the-story-keeper-server.vercel.app/products/${product.productID}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const ReportedItems = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    fetch(`http://localhost:5000/reporteditems/${product._id}`, {
+                    fetch(`https://the-story-keeper-server.vercel.app/reporteditems/${product._id}`, {
                         method: 'DELETE',
                         headers: {
                             authorization: `bearer ${localStorage.getItem('accessToken')}`
