@@ -2,7 +2,7 @@
 
 ## Deployment
 
-[Live site](https://gallery-of-memories.web.app/)
+[Live site](https://the-story-keeper.web.app/)
 
 ## Frameworks/libraries used:
 
