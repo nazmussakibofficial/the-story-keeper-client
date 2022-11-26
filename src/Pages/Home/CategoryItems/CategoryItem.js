@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 
-const CategoryItem = ({ item, setItem }) => {
+const CategoryItem = ({ item, setItem, handleWishlist }) => {
     const [verified, setVerified] = useState(false);
     const { image, name, location, resale, original, usedtime, condition, sellerName, date, sellerEmail } = item;
+
     useEffect(() => {
         axios.get(`http://localhost:5000/users/sellerVerified/${sellerEmail}`)
             .then(data => setVerified(data.data.isVerified))
     }, [sellerEmail])
+
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -25,8 +27,10 @@ const CategoryItem = ({ item, setItem }) => {
                 <p>Condition: {condition}</p>
                 <p>Seller: {sellerName} {verified && <FontAwesomeIcon className='text-blue-500' icon={faCircleCheck} />}</p>
                 <p>Posted on: {date}</p>
-                <div className="card-actions justify-center">
-                    <label onClick={() => setItem(item)} htmlFor="booking-modal" className="btn btn-secondary mt-5">Book Now</label>
+                <div className="card-actions justify-center mt-5">
+                    <label onClick={() => setItem(item)} htmlFor="booking-modal" className="btn btn-secondary">Book Now</label>
+                    <button onClick={() => handleWishlist(item)} className='btn btn-secondary'>Add to Wishlist</button>
+                    <button className='btn btn-error'><FontAwesomeIcon className='mr-2' icon={faTriangleExclamation} /> Report Item</button>
                 </div>
             </div>
 

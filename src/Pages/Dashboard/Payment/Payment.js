@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
@@ -10,11 +10,13 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
     const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const type = searchParams.get('type');
     const { data: booking, isLoading } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/bookings/${id}`, {
+                const res = await fetch(`http://localhost:5000/${type}/${id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

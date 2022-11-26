@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
-const MyOrders = () => {
-    const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+const MyWIshlist = () => {
 
-    const { data: bookings = [], isLoading } = useQuery({
-        queryKey: ['bookings', user?.email],
+    const { user } = useContext(AuthContext);
+    const url = `http://localhost:5000/wishlist?email=${user?.email}`
+
+    const { data: wishlist = [], isLoading } = useQuery({
+        queryKey: ['wishlist', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
@@ -40,23 +41,23 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, i) => <tr key={booking._id}>
+                            wishlist.map((wishlistItem, i) => <tr key={wishlistItem._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
                                     <div className="mask mask-squircle w-12 h-12">
-                                        <img src={booking.image} alt="" />
+                                        <img src={wishlistItem.image} alt="" />
                                     </div>
                                 </div></td>
-                                <td>{booking.productName}</td>
-                                <td>{booking.category}</td>
-                                <td>{booking.price} Taka</td>
+                                <td>{wishlistItem.productName}</td>
+                                <td>{wishlistItem.category}</td>
+                                <td>{wishlistItem.price} Taka</td>
                                 <td>
                                     {
-                                        booking.price && !booking.paid &&
-                                        <Link to={`/dashboard/payment/${booking._id}?type=bookings`}><button className='btn btn-sm btn-secondary'>Pay</button></Link>
+                                        wishlistItem.price && !wishlistItem.paid &&
+                                        <Link to={`/dashboard/payment/${wishlistItem._id}?type=wishlist`}><button className='btn btn-sm btn-secondary'>Pay</button></Link>
                                     }
                                     {
-                                        booking.price && booking.paid && <span className='btn btn-sm btn-primary hover:bg-primary'>Paid</span>
+                                        wishlistItem.price && wishlistItem.paid && <span className='btn btn-sm btn-primary hover:bg-primary'>Paid</span>
                                     }
                                 </td>
                             </tr>)
@@ -69,4 +70,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyWIshlist;

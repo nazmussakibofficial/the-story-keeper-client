@@ -36,6 +36,7 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content">
                         <li><NavLink className={({ isActive }) => isActive ? 'bg-secondary' : undefined} to="/dashboard" end>My orders</NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'bg-secondary' : undefined} to="/dashboard/wishlist" end>My wishlist</NavLink></li>
                         {
                             userData.role === 'seller' && <>
                                 <li><NavLink className={({ isActive }) => isActive ? 'bg-secondary' : undefined} to="/dashboard/addproduct" end>Add A Product</NavLink></li>
