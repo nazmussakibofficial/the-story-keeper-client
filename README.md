@@ -1,5 +1,13 @@
 # The Story Keeper Project
 
+# Admin Credntials
+
+adminEmail: sakib@sakib.com
+
+adminPassword: 123456
+
+Note: All other users use the same password
+
 ## Deployment
 
 [Live site](https://the-story-keeper.web.app/)
