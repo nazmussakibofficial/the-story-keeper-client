@@ -51,10 +51,8 @@ const DashboardLayout = () => {
                                 <li><NavLink className={({ isActive }) => isActive ? 'bg-secondary' : undefined} to="/dashboard/reporteditems" end>Reported Items</NavLink></li></>
                         }
                     </ul>
-
                 </div>
             </div>
-
         </div >
     );
 };

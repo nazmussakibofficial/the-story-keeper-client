@@ -86,7 +86,7 @@ const Login = () => {
                                 <input className="btn btn-secondary" value='Login' type='submit'></input>
                             </div>
                         </form>
-                        <p>New to The Story Keeper? <Link className='link link-accent' to='/register'>Create a new Account</Link></p>
+                        <p>New to The Story Keeper? <Link className='link link-accent' to='/register'>Create a new account</Link></p>
                         <div className="divider mt-2">OR</div>
                         <button onClick={handleGoogleSignin} className="btn btn-outline btn-accent mb-5 mx-3">Log in with google</button>
                     </div>

@@ -143,7 +143,7 @@ const Register = () => {
                                 <input className="btn btn-secondary" value='Register' type='submit'></input>
                             </div>
                         </form>
-                        <p className='mx-auto'>Already Registered? <Link className='link link-accent' to='/register'>Register</Link></p>
+                        <p className='mx-auto'>Already Registered? <Link className='link link-accent' to='/login'>Log in</Link></p>
                         <div className="divider mt-2">OR</div>
                         <button onClick={handleGoogleSignin} className="btn btn-outline btn-accent mb-5 mx-3">Log in with google</button>
                     </div>

@@ -10,7 +10,7 @@
 
 This project features:
 
-### Note: the profile options can be accessed after you click on the profile picture
+### Note: the profile options(dashboard, logout) can be accessed after you click on the profile picture
 
 ### `SPA(Single Page Application) built with react router, which enables smoother load time`
 
