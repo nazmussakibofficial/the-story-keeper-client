@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
@@ -57,6 +58,11 @@ const Login = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Login - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">

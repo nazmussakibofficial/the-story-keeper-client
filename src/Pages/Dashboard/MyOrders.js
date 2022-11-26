@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { Link } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -26,6 +27,11 @@ const MyOrders = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>My Orders - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>

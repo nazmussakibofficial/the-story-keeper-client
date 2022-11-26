@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import ConfimrationModal from '../Shared/ConfimrationModal';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const AllBuyers = () => {
     const [deletingUser, setDeletinguser] = useState(null);
@@ -46,6 +47,11 @@ const AllBuyers = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Buyers - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>

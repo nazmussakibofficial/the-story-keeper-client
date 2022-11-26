@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -89,6 +90,11 @@ const Register = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Register - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">

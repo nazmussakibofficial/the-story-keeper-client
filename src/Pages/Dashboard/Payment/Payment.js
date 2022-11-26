@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
@@ -37,6 +38,11 @@ const Payment = () => {
     const { price, productName, image } = booking;
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Payment for {productName} - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
                     <img src={image} className="max-w-xs rounded-lg shadow-2xl" alt='' />

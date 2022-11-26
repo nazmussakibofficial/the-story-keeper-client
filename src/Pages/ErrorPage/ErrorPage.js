@@ -1,9 +1,15 @@
 import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './ErrorPage.css';
 
 const ErrorPage = () => {
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>No Such Page Exists - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
                 <g id="Layer_12 yellow-back-fig" data-name="Layer 12">
                     <path className="cls-1" d="M600.87,872H156a4,4,0,0,0-3.78,4.19h0a4,4,0,0,0,3.78,4.19H600.87a4,4,0,0,0,3.78-4.19h0A4,4,0,0,0,600.87,872Z" />

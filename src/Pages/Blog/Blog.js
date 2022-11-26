@@ -1,8 +1,14 @@
 import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Blog = () => {
     return (
         <div className="flex justify-center">
+            <HelmetProvider>
+                <Helmet>
+                    <title>Blog - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className='w-3/4 min-h-screen py-16'>
                 <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-6">
                     <div className="collapse-title text-xl font-medium">

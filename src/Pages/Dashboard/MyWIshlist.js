@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const MyWIshlist = () => {
 
@@ -27,6 +28,11 @@ const MyWIshlist = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>My Wishlist - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>

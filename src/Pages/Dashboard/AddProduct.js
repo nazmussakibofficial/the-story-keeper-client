@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -56,6 +57,11 @@ const AddProduct = () => {
     }
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Add a Product - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="hero mt-10 min-h-screen bg-contain bg-[url('https://images.unsplash.com/photo-1593430980369-68efc5a5eb34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1185&q=80')]">
                 <div className="hero-content flex-col">
                     <div className="text-center lg:text-left">

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import ConfimrationModal from '../Shared/ConfimrationModal';
 
@@ -57,6 +58,11 @@ const ReportedItems = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Reported Items - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>

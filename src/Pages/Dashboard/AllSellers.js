@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import ConfimrationModal from '../Shared/ConfimrationModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const AllSellers = () => {
     const [deletingUser, setDeletinguser] = useState(null);
@@ -68,6 +69,11 @@ const AllSellers = () => {
 
     return (
         <div>
+            <HelmetProvider>
+                <Helmet>
+                    <title>Sellers - The Story Keeper</title>
+                </Helmet>
+            </HelmetProvider>
             <div className="overflow-x-auto mt-10">
                 <table className="table table-compact w-full">
                     <thead>
