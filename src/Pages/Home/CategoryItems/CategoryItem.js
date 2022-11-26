@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 
-const CategoryItem = ({ item, setItem, handleWishlist }) => {
+const CategoryItem = ({ item, setItem, handleWishlist, setReportedProduct }) => {
     const [verified, setVerified] = useState(false);
     const { image, name, location, resale, original, usedtime, condition, sellerName, date, sellerEmail } = item;
 
@@ -30,7 +30,7 @@ const CategoryItem = ({ item, setItem, handleWishlist }) => {
                 <div className="card-actions justify-center mt-5">
                     <label onClick={() => setItem(item)} htmlFor="booking-modal" className="btn btn-secondary">Book Now</label>
                     <button onClick={() => handleWishlist(item)} className='btn btn-secondary'>Add to Wishlist</button>
-                    <button className='btn btn-error'><FontAwesomeIcon className='mr-2' icon={faTriangleExclamation} /> Report Item</button>
+                    <label htmlFor="confirmation-modal" onClick={() => setReportedProduct(item)} className='btn btn-error'><FontAwesomeIcon className='mr-2' icon={faTriangleExclamation} /> Report Item</label>
                 </div>
             </div>
 

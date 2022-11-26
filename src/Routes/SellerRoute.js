@@ -9,7 +9,7 @@ const SellerRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading || sellerLoading) {
-        return <progress className="progress w-56"></progress>
+        return <button className="btn loading">loading</button>
     }
 
     if (user && isSeller) {

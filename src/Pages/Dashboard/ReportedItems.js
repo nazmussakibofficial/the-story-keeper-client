@@ -1,18 +1,16 @@
-import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { AuthContext } from '../../Contexts/AuthProvider';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import ConfimrationModal from '../Shared/ConfimrationModal';
 
-const MyProducts = () => {
-    const { user } = useContext(AuthContext);
+const ReportedItems = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
 
-    const { data: products, isLoading, refetch } = useQuery({
-        queryKey: ['products'],
+    const { data: reports, isLoading, refetch } = useQuery({
+        queryKey: ['reports'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+                const res = await fetch(`http://localhost:5000/reporteditems`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -27,7 +25,7 @@ const MyProducts = () => {
     });
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`http://localhost:5000/products/${product.productID}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -36,32 +34,22 @@ const MyProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    refetch();
-                    toast.success(`${product.name} deleted successfully`)
+                    fetch(`http://localhost:5000/reporteditems/${product._id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+                                refetch();
+                                toast.success(`${product.productName} deleted successfully`)
+                            }
+                        })
                 }
             })
     }
-
-    const handleUpdate = product => {
-        const isAd = !product.isAd;
-
-        fetch(`http://localhost:5000/products/${product._id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ isAd })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    toast.success('Changed Successfully!');
-                    refetch();
-                }
-            })
-
-    }
-
 
     if (isLoading) {
         return <button className="btn loading">loading</button>;
@@ -78,26 +66,22 @@ const MyProducts = () => {
                             <th>Name</th>
                             <th>Category</th>
                             <th>Price</th>
-                            <th>Status</th>
-                            <th>Advertise</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            products.map((product, i) => <tr key={product._id}>
+                            reports.map((report, i) => <tr key={report._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
                                     <div className="mask mask-squircle w-12 h-12">
-                                        <img src={product.image} alt="" />
+                                        <img src={report.image} alt="" />
                                     </div>
                                 </div></td>
-                                <td>{product.name}</td>
-                                <td>{product.category}</td>
-                                <td>{product.resale} Taka</td>
-                                <td>{product.resale && product.paid ? <span className='btn btn-sm btn-primary hover:bg-primary'>Sold</span> : <span className='btn btn-sm btn-primary hover:bg-primary'>Available</span>}</td>
-                                <td>{!product.paid ? <button onClick={() => handleUpdate(product)} className="btn btn-sm btn-secondary">{!product.isAd ? 'Advertise' : 'Undo'}</button> : <span className='btn btn-sm btn-primary hover:bg-primary'>Not Available</span>}</td>
-                                <td><label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
+                                <td>{report.productName}</td>
+                                <td>{report.category}</td>
+                                <td>{report.price} Taka</td>
+                                <td><label onClick={() => setDeletingProduct(report)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }
                     </tbody>
@@ -106,7 +90,7 @@ const MyProducts = () => {
             {
                 deletingProduct && <ConfimrationModal
                     title={`Are you sure you want to delete?`}
-                    message={`If you delete ${deletingProduct.name}. It cannot be undone.`}
+                    message={`If you delete ${deletingProduct.productName}. It cannot be undone.`}
                     successAction={handleDeleteProduct}
                     successButtonName="Delete"
                     modalData={deletingProduct}
@@ -117,4 +101,4 @@ const MyProducts = () => {
     );
 };
 
-export default MyProducts;
+export default ReportedItems;
