@@ -6,7 +6,7 @@
 
 ## Frameworks/libraries used:
 
-### `React, firebase, react router dom, tailwind, daisyUI, react toastify, react helmet async, react photo view`
+### `React, firebase, react router dom, tailwind, daisyUI, react hot toast, react helmet async, stripe, react hook form, tanstack query, react fontawesome`
 
 This project features:
 
