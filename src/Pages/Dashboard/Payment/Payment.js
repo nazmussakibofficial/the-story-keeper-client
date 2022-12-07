@@ -32,7 +32,9 @@ const Payment = () => {
     });
 
     if (isLoading) {
-        return <button className="btn loading">loading</button>;
+        return <div className='flex justify-center my-6'>
+            <button className="btn loading">loading</button>
+        </div>;
     }
 
     const { price, productName, image } = booking;
