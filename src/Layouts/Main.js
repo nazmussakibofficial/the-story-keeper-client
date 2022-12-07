@@ -5,7 +5,7 @@ import Navbar from '../Pages/Shared/Navbar';
 
 const Main = () => {
     return (
-        <div className='bg-base-300'>
+        <div className='bg-base-100'>
             <div className='container mx-auto'>
                 <Navbar></Navbar>
                 <Outlet></Outlet>
