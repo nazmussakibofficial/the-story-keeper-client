@@ -80,7 +80,7 @@ const AddProduct = () => {
                                 <label className="label">
                                     <span className="label-text">Product Picture</span>
                                 </label>
-                                <input {...register("photo")} type="file" className="input input-bordered" />
+                                <input {...register("photo")} type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
