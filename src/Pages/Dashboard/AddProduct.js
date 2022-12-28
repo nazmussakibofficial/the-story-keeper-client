@@ -94,28 +94,28 @@ const AddProduct = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Location</span>
+                                    <span className="label-text">Location:</span>
                                 </label>
                                 <input {...register("location")}
                                     type="text" placeholder="location" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Resale price</span>
+                                    <span className="label-text">Resale price:</span>
                                 </label>
                                 <input {...register("resale")}
                                     type="text" placeholder="price" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Original price</span>
+                                    <span className="label-text">Original price:</span>
                                 </label>
                                 <input {...register("original")}
                                     type="text" placeholder="price" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Years of use</span>
+                                    <span className="label-text">Years of use:</span>
                                 </label>
                                 <input {...register("usedtime")}
                                     type="text" placeholder="years" className="input input-bordered" />
