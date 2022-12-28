@@ -71,20 +71,20 @@ const AddProduct = () => {
                         <form onSubmit={handleSubmit(handleAddProduct)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Product Name</span>
+                                    <span className="label-text">Product name:</span>
                                 </label>
                                 <input {...register("name")}
                                     type="text" placeholder="name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Product Picture</span>
+                                    <span className="label-text">Product picture:</span>
                                 </label>
                                 <input {...register("photo")} type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Choose Category:</span>
+                                    <span className="label-text">Choose category:</span>
                                 </label>
                                 <select {...register('category')} className="select select-accent w-full max-w-xs">
                                     <option value='Text'>Text Books</option>
@@ -101,7 +101,7 @@ const AddProduct = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Resale Price</span>
+                                    <span className="label-text">Resale price</span>
                                 </label>
                                 <input {...register("resale")}
                                     type="text" placeholder="price" className="input input-bordered" />
@@ -122,7 +122,7 @@ const AddProduct = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Choose Condition:</span>
+                                    <span className="label-text">Choose condition:</span>
                                 </label>
                                 <select {...register('condition')} className="select select-accent w-full max-w-xs">
                                     <option value='Excellent'>Excellent</option>
